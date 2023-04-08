@@ -1,0 +1,31 @@
+
+    <div class="container text-center">
+    <h1>Sign in</h1>
+
+<% if @user.errors.any? %>
+<div class="alert alert-danger" role="alert">
+ <ul>
+    <% @user.errors.full_messages.each do |error_msg| %>
+        <li style="color: red;"><%= error_msg %></li>
+    <% end %>
+    </ul>
+</div>
+
+<% end %>
+<%= form_with(scope: :session, url: authenticate_path, local: true, data: { turbo: false }, class: "form d-flex flex-column") do |f| %>
+    <div class="mb-3 d-flex">
+        <%= f.label :email, class: "form-label", id: "exampleInputEmail1" %>
+        <%= f.text_field :email, class: "form-control", id: "exampleInputEmail1", rows: "8" %>
+    </div>
+
+    <div class="mb-3 d-flex">
+        <%= f.label :password, class: "form-label", id: "exampleInputEmail1" %>
+        <%= f.text_field :password, class: "form-control", id: "exampleInputEmail1", rows: "8" %>
+    </div>
+    <%= f.submit class: 'btn btn-outline-light form__submit-btn' %>
+<% end %>
+
+
+[<%= link_to "Return to homepage", root_path %>]
+</div>
+

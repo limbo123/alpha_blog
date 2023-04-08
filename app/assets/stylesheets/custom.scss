@@ -1,0 +1,80 @@
+html, body {
+  height: 100%;
+}
+
+body {
+    background: rgb(229, 229, 229);
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.navbar {
+  background: #000 !important;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.navbar-brand {
+  color: #fff !important;
+  text-transform: uppercase;
+}
+
+.jumbotron {
+  margin-top: 40px;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), asset-url("writeImage");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 425px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.jumbotron * {
+    margin: 15px 0;
+}
+
+.footer {
+    flex-shrink: none;
+    width: 100%;
+    background: rgb(74, 74, 74);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    color: #fff;
+}
+
+#article_card {
+  margin: 20px 0;
+}
+
+.form {
+  margin: 20px auto;
+  // width: 70%;
+  border-radius: 6px;
+  background: #1e889b;
+  padding: 20px;
+}
+
+.form-label {
+  width: 200px;
+  color: #fff;
+  text-align: left;
+}
+
+.form__submit-btn {
+  width: fit-content;
+  padding: 10px 15px;
+  margin: auto;
+}
+
+.description-text {
+  text-align: left !important;
+}

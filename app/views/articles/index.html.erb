@@ -1,0 +1,25 @@
+<div class="container d-flex flex-column justify-center text-center">
+    <h1>All Articles</h1>
+    <p><%= link_to "Create Article", new_article_path() %></p>
+
+    <% @articles.each_with_index do |article, index| %>
+        <div class="card text-center" id="article_card">
+            <div class="card-header">
+                <%= "By #{article.user.username}" %>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><%= article.title %></h5>
+                <p class="card-text"><%= truncate(article.description, length: 100) %></p>
+                <%= link_to "See details", article_path(article), class: "btn btn-outline-info outline" %>
+                <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-warning" %>
+                <%= link_to "Delete", article_path(article), data: { turbo_method: :delete },  class: "btn btn-outline-danger" %>
+            </div>
+            <div class="card-footer text-muted">
+               Created <%= time_ago_in_words(article.created_at) %> ago.
+               Last edited <%= time_ago_in_words(article.updated_at) %> ago
+            </div>
+        </div>
+    <% end %>
+
+</div>
+

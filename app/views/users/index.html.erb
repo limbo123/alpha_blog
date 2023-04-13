@@ -1,0 +1,31 @@
+<div class="container text-center">
+    <h1>All Bloggers</h1>
+
+    <div class="flickr_pagination">
+        <%= will_paginate @articles, :container => false %>
+    </div>
+
+   <% @users.each do |user| %>
+        <div class="card text-center" id="card">
+            <div class="card-header">
+                By <%= link_to user.username, user_path(user) %>
+            </div>
+            <div class="card-body">
+                <%= gravatar_for user, 200 %>
+                <p><%= user.articles.length %> articles</p>
+                <%= link_to "See details", user_path(user), class: "btn btn-outline-info outline" %>
+                <% if is_logged_in? && current_user == user %>
+                    <%= link_to "Edit", edit_user_path(user), class: "btn btn-outline-warning" %>
+                <% end %>
+            </div>
+            <div class="card-footer text-muted">
+               Joined <%= time_ago_in_words(user.created_at) %> ago.
+            </div>
+        </div>
+    <% end %>
+    <div class="flickr_pagination">
+        <%= will_paginate @articles, :container => false %>
+    </div>
+
+</div>
+

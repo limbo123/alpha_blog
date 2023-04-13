@@ -20,9 +20,9 @@
 
     <div class="mb-3 d-flex">
         <%= f.label :password, class: "form-label", id: "exampleInputEmail1" %>
-        <%= f.text_field :password, class: "form-control", id: "exampleInputEmail1", rows: "8" %>
+        <%= f.password_field :password, class: "form-control", id: "exampleInputEmail1", rows: "8" %>
     </div>
-    <%= f.submit class: 'btn btn-outline-light form__submit-btn' %>
+    <%= f.submit "Sign in", class: 'btn btn-outline-light form__submit-btn' %>
 <% end %>
 
 

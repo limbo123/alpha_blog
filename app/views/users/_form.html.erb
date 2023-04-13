@@ -1,13 +1,4 @@
-<% if @user.errors.any? %>
-<div class="alert alert-danger" role="alert">
- <ul>
-    <% @user.errors.full_messages.each do |error_msg| %>
-        <li style="color: red;"><%= error_msg %></li>
-    <% end %>
-    </ul>
-</div>
-
-<% end %>
+<%= render "shared/errors", object: @user %>
 
 <%= form_with(model: @user, local: true, data: { turbo: false }, class: "form d-flex flex-column") do |f| %>
     <div class="mb-3 d-flex">
@@ -22,7 +13,7 @@
 
     <div class="mb-3 d-flex">
         <%= f.label :password, class: "form-label", id: "exampleInputEmail1" %>
-        <%= f.text_field :password, class: "form-control", id: "exampleInputEmail1", rows: "8" %>
+        <%= f.password_field :password, class: "form-control", id: "exampleInputEmail1", rows: "8" %>
     </div>
-    <%= f.submit class: 'btn btn-outline-light form__submit-btn' %>
+    <%= f.submit(@user.new_record? ? "Sign up" : "Edit profile", class: 'btn btn-outline-light form__submit-btn') %>
 <% end %>

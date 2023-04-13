@@ -1,0 +1,11 @@
+<% if object.errors.any? %>
+<div class="alert alert-danger" role="alert">
+    <h3>This errors prevented <%= object.class.name.downcase %> from successful creation </h3>
+ <ul>
+    <% object.errors.full_messages.each do |error_msg| %>
+        <li style="color: red; text-align: left"><%= error_msg %></li>
+    <% end %>
+    </ul>
+</div>
+
+<% end %>

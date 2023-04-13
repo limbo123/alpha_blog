@@ -1,14 +1,18 @@
     <div class="container d-flex flex-column justify-center text-center">
     <h1>Article Page</h1>
-        <div class="card" id="article_card">
-            <div class="card-header">
+        <div class="card" id="card">
+            <div class="card-header d-flex flex-column">
+                <%= link_to gravatar_for(@article.user, 50), user_path(@article.user), class: "mb-2" %>
                 By <%= @article.user.username %>
             </div>
             <div class="card-body">
                 <h5 class="card-title"><%= @article.title %></h5>
                 <div class="card-text description-text"><%= simple_format(@article.description) %></div>
-                <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-warning" %>
-                <%= link_to "Delete", article_path(@article), data: { turbo_method: :delete },  class: "btn btn-outline-danger" %>
+                <% if is_logged_in? && @article.user === current_user %>
+                    <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-warning" %>
+                    <%= link_to "Delete", article_path(@article), data: { turbo_method: :delete },  class: "btn btn-outline-danger" %>
+                <% end %>
+
             </div>
             <div class="card-footer text-muted">
                Created <%= time_ago_in_words(@article.created_at) %> ago.

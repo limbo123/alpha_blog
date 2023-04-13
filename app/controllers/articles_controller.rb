@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
 
   before_action :find_article, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:show, :index]
+  before_action :require_author, only: [:edit, :destroy, :update]
 
   def index
     @articles = Article.paginate(:page => params[:page], :per_page => 2)
@@ -49,6 +51,13 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :description)
+  end
+
+  def require_author
+    if current_user != @article.user && !current_user.admin?
+      flash[:alert] = "You can't edit artworks other than yours"
+      redirect @article
+    end
   end
 
 end

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     puts "USER:"
     p params[:password]
     if @user == nil
-      flash[:notice] = "User not find"
+      flash[:alert] = "User not found"
       @user = User.new
       render "new"
       return

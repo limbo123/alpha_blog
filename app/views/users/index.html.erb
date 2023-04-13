@@ -8,14 +8,19 @@
    <% @users.each do |user| %>
         <div class="card text-center" id="card">
             <div class="card-header">
-                By <%= link_to user.username, user_path(user) %>
+                <%= link_to user.username, user_path(user) %>
             </div>
             <div class="card-body">
                 <%= gravatar_for user, 200 %>
                 <p><%= user.articles.length %> articles</p>
                 <%= link_to "See details", user_path(user), class: "btn btn-outline-info outline" %>
-                <% if is_logged_in? && current_user == user %>
-                    <%= link_to "Edit", edit_user_path(user), class: "btn btn-outline-warning" %>
+                <% if is_logged_in? %>
+                    <% if current_user == user %>
+                        <%= link_to "Edit", edit_user_path(user), class: "btn btn-outline-warning" %>
+                    <% end %>
+                    <% if current_user.admin? %>
+                        <%= link_to "Delete", user_path(user), class: "btn btn-outline-danger", data: { method: :delete } %>
+                    <% end %>
                 <% end %>
             </div>
             <div class="card-footer text-muted">

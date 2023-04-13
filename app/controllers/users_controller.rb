@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+  before_action :require_user, only: [:edit, :update, :destroy]
   before_action :define_user, only: [:new]
-  before_action :find_user_by_id, only: [:edit, :update, :show]
+  before_action :find_user_by_id, only: [:edit, :update, :show, :destroy]
+  before_action :require_author , only: [:edit, :update, :destroy]
 
   def new
     @user = User.new
@@ -36,10 +38,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.destroy
+    session[:user_id] = nil if @user == current_user
+    redirect_to root_path
+  end
+
   private
 
   def define_user
     @user = User.new
+  end
+
+  def require_author
+    if current_user != @user && !current_user.admin?
+      flash[:alert] = "You can't edit or delete foreign accounts"
+      redirect_to @user
+    end
   end
 
   def find_user_by_id

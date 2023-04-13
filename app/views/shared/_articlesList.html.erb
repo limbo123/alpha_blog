@@ -7,7 +7,7 @@
                 <h5 class="card-title"><%= article.title %></h5>
                 <p class="card-text"><%= truncate(article.description, length: 100) %></p>
                 <%= link_to "See details", article_path(article), class: "btn btn-outline-info outline" %>
-                <% if is_logged_in? && article.user === current_user %>
+                <% if is_logged_in? && (article.user === current_user || current_user.admin?) %>
                     <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-warning" %>
                     <%= link_to "Delete", article_path(article), data: { turbo_method: :delete },  class: "btn btn-outline-danger" %>
                 <% end %>

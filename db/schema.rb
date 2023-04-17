@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_13_172500) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_14_105235) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -19,6 +19,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_172500) do
     t.integer "users_id"
     t.integer "user_id"
     t.index ["users_id"], name: "index_articles_on_users_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "#<ActiveRecord::ConnectionAdapters::SQLite3::TableDefinition:0x00007fdea1a8aea8>"
   end
 
   create_table "users", force: :cascade do |t|

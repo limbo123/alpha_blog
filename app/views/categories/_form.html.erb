@@ -1,0 +1,9 @@
+<%= render "shared/errors", object: @category %>
+
+<%= form_with(model: @category, local: true, data: { turbo: false }, class: "form d-flex flex-column") do |f| %>
+    <div class="mb-3 d-flex">
+        <%= f.label :name, class: "form-label", id: "exampleInputName" %>
+        <%= f.text_field :name, class: "form-control", id: "exampleInputName" %>
+    </div>
+    <%= f.submit class: 'btn btn-outline-light form__submit-btn' %>
+<% end %>
